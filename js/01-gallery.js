@@ -17,7 +17,7 @@ function createImagesMarkup(galleryItems) {
         <a class="gallery__link" href="${original}">
         <img class="gallery__image" src="${preview}", 
         data-source="${original}", 
-        alt="${description}", width="366", height="234"
+        alt="${description}"/>
         </a>
         </div>`);
     })
@@ -31,21 +31,32 @@ function imagesPicker(e) {
     const imagesEl = e.target.classList.contains('gallery__image');
     if (!imagesEl) {
         return
-    }
-console.log(e.target);
+    } 
+     }
+galleryOfImages.addEventListener('click', callModal)
+
+function callModal(e) {
+	const instance = basicLightbox.create(`<div class="modal">
+    <img src="${e.target.dataset.source}" alt="${e.target.alt}"/>
+    </div>
+`) 
+
+    instance.show();
+
 }
 
+// const divModal = document.querySelector('.modal');
+// document.addEventListener('keydown', closeModal);
+// console.log(divModal);
+// function closeModal(e) {    
+//     if (e.code === 'Escape') {
+//         instance.close();
+//         // divModal.classList.remove('modal');
+//     }
+// }
 
-
-const instance = basicLightbox.create(`
-    <div class="modal">
-<a class="gallery__link" href="${original}">
-        <img class="gallery__image" src="${preview}", 
-        data-source="${original}", 
-        alt="${description}", width="366", height="234"
-        </a>
-    </div>
-`)
-instance.show();
-console.log(instance);
-console.log(basicLightbox);
+galleryOfImages.addEventListener("keydown", (e) => {
+    if (e.code === "Escape") {
+        instance.close();
+    }
+})
