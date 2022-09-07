@@ -13,7 +13,9 @@ const createGalleryNet = galleryItems.map(({ preview, original, description }) =
 
 galleryNet.insertAdjacentHTML("afterbegin", createGalleryNet);
 
-galleryNet.addEventListener('ckick', openModal)
-function openModal(e) {
-    var lightbox = new SimpleLightbox('.gallery', { /* options */ });
-}
+
+const lightbox = new SimpleLightbox('.gallery .gallery__item', {
+  captionsData: "alt",
+  captionDelay: 250,
+});
+
